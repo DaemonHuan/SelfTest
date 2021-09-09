@@ -8,4 +8,7 @@ SUBDIRS += \
     TestOnQml \
     TestOnWidget
 
-
+OTHER_FILES += \
+    version.log \
+    LICENSE \
+    README.md
