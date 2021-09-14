@@ -22,6 +22,7 @@ private slots:
     void doLoadFileList();
     void doFilesReName();
     void doReNameFormart(int flag = 0);
+    void doReNameRemoveCode(int flag = 0);
 
     void on_si_flag_valueChanged(int arg1);
 

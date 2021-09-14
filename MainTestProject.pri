@@ -10,7 +10,7 @@ message(** ==== ** ==== ** ==== ** ==== ** ==== ** ==== **)
 
 PROJECT_BINDIR *= $$PWD/.
 
-PROJECT_INCLUDEPATH *= $$PROJECT_BINDIR/include
+PROJECT_INCLUDEPATH *= $$PROJECT_BINDIR/include $$PROJECT_BINDIR/plugins
 INCLUDEPATH += $$PROJECT_INCLUDEPATH
 message(** INCLUDEPATH: $$INCLUDEPATH)
 

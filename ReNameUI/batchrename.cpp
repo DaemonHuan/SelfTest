@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QCheckBox>
 
 #include <QDebug>
 #include <QList>
@@ -18,6 +19,7 @@ BatchReName::BatchReName(QWidget *parent) : QWidget(parent), ui(new Ui::BatchReN
     QObject::connect(ui->load, SIGNAL(clicked()), this, SLOT(doLoadFileList()));
     QObject::connect(ui->filename, SIGNAL(editingFinished()), this, SLOT(doReNameFormart()));
     QObject::connect(ui->start, SIGNAL(clicked()), this, SLOT(doFilesReName()));
+    QObject::connect(ui->cb_remove, &QCheckBox::stateChanged, this, &BatchReName::doReNameRemoveCode);
 }
 
 BatchReName::~BatchReName() {    delete ui;     }
@@ -64,6 +66,21 @@ void BatchReName::doLoadFileList()
 
 void BatchReName::doFilesReName()
 {
+    if (ui->cb_remove->isChecked()) {
+        for (int count = 0; count < ui->tableWidget->rowCount(); ++count)
+        {
+            QString newname;
+            newname.append(this->filepath);
+            newname.append(QString("/")+ui->tableWidget->item(count,1)->text());
+
+            QString oldname = this->filepath + QString("/") + ui->tableWidget->item(count, 0)->text();
+
+            qDebug() <<oldname <<newname <<QFile::rename(oldname, newname);
+        }
+
+        return void();
+    }
+
     for (int count = 0; count < ui->tableWidget->rowCount(); ++count)
     {
         QString newname;
@@ -100,6 +117,16 @@ void BatchReName::doReNameFormart(int flag)
 
         qDebug() <<(name + num);
         ui->tableWidget->setItem(count, 1, new QTableWidgetItem(name + " " + num));
+    }
+}
+
+void BatchReName::doReNameRemoveCode(int flag)
+{
+    for (int count = 0; count < ui->tableWidget->rowCount(); ++count) {
+        QString i_fm = ui->tableWidget->item(count, 0)->text();
+        QString i_fm_new = i_fm.replace(" (", " - ").replace(")", "");
+
+        ui->tableWidget->setItem(count, 1, new QTableWidgetItem(i_fm_new));
     }
 }
 
