@@ -25,8 +25,12 @@ HEADERS += \
     jmetaclass.h \
     mainwindow.h
 
+
 #SOURCES += scintillawidget.cpp
 #HEADERS += scintillawidget.h
 
 FORMS += \
     mainwindow.ui
+
+RESOURCES += \
+    ../resources/resource.qrc

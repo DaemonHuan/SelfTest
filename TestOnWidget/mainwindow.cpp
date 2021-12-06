@@ -18,10 +18,10 @@
 
 #include <QStack>
 #include <QPair>
+#include <QMetaMethod>
 
 #include "jmetaclass.h"
-
-#include <QMetaMethod>
+#include "objecti.h"
 
 typedef QVariant DataIndex;     // Int String
 typedef QStack<QPair<DataIndex, QJsonValue>> DataPairStack;
@@ -43,7 +43,29 @@ MainWindow::MainWindow(QWidget *parent) :
     /* ==== ** ==== ** ==== ** ==== ** ==== ** ==== ** ==== */
 
 //    this->TT_Qstack();
+
+    ObjectI obji;
+    qDebug() <<"=====" <<obji.funA(1) <<obji.c_value;
+
     this->TT_jmetaclass();
+
+    ui->label->setFixedSize(100, 100);
+    ui->label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    qDebug() <<"--" <<ui->label->size();
+
+    //
+    QPixmap pxm(":/image/a01.png");
+//    pxm = pxm.scaled(ui->label->size(), Qt::IgnoreAspectRatio);
+
+    ui->label->setContentsMargins(20, 20, 20, 20);
+    ui->label->setPixmap(pxm);
+    qDebug() <<"--" <<ui->label->size();
+
+    ui->label->setScaledContents(true);
+    qDebug() <<"--" <<ui->label->size();
+
+
+//    pxm = pxm.scaled()
 
 }
 

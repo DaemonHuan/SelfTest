@@ -17,3 +17,6 @@ message(** INCLUDEPATH: $$INCLUDEPATH)
 PROJECT_LIBPATH *= $$PROJECT_BINDIR/libraries
 DEPENDPATH += $$PROJECT_LIBPATH
 message(** DEPENDPATH: $$DEPENDPATH)
+
+RESOURCES += \
+    $$PWD/maintestproject.qrc
